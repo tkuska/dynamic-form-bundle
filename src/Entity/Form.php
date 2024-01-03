@@ -20,8 +20,6 @@ class Form
     #[ORM\OneToMany(mappedBy: 'form', targetEntity: FormField::class, orphanRemoval: true)]
     private Collection $fields;
 
-    
-    
     public function __construct()
     {
         $this->fields = new ArrayCollection();

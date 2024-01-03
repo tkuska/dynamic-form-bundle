@@ -1,0 +1,10 @@
+{% use "bootstrap_4_layout.html.twig" %}
+
+{% block dynamic_form_widget -%}
+    {{ form_widget(form) }}
+{%- endblock dynamic_form_widget %}
+
+
+{% block form_field_widget -%}
+    {{ form_widget(form) }}
+{%- endblock form_field_widget %}
