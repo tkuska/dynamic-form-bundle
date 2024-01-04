@@ -21,15 +21,15 @@ class TkuskaDynamicFormExtension extends Extension implements PrependExtensionIn
             ]);
         }
 
-//        if ($this->isAssetMapperAvailable($container)) {
-//            $container->prependExtensionConfig('framework', [
-//                'asset_mapper' => [
-//                    'paths' => [
-//                        __DIR__.'/../../assets/dist' => '@tkuska/dynamic-form',
-//                    ],
-//                ],
-//            ]);
-//        }
+        if ($this->isAssetMapperAvailable($container)) {
+            $container->prependExtensionConfig('framework', [
+                'asset_mapper' => [
+                    'paths' => [
+                        __DIR__.'/../../assets/dist' => '@tkuska/dynamic-form',
+                    ],
+                ],
+            ]);
+        }
     }
 
     public function load(array $configs, ContainerBuilder $container): void

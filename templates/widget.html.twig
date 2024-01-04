@@ -1,10 +1,26 @@
-{% use "bootstrap_4_layout.html.twig" %}
-
 {% block dynamic_form_widget -%}
-    {{ form_widget(form) }}
+    {{ form_row(form.name) }}
+
+    {{ form_errors(form.fields) }}
+    <div {{ stimulus_controller('tkuska--dynamic-form--form-collection') }}
+            data-tkuska--dynamic-form--form-collection-index-value="{{ form.fields|length > 0 ? form.fields|last.vars.name + 1 : 0 }}"
+            data-tkuska--dynamic-form--form-collection-prototype-value="{{ form_widget(form.fields.vars.prototype)|e('html_attr') }}"
+    >
+        <div {{ stimulus_target('tkuska--dynamic-form--form-collection', 'collectionContainer') }}>
+            {% for field in form.fields %}
+                {{ form_row(field) }}
+            {% endfor %}
+        </div>
+        {% do form.fields.setRendered %}
+        <button type="button" {{ stimulus_action('tkuska--dynamic-form--form-collection', 'addCollectionElement') }}>
+            {{ 'add-field'|trans }}</button>
+    </div>
 {%- endblock dynamic_form_widget %}
 
 
 {% block form_field_widget -%}
-    {{ form_widget(form) }}
+    <div class="collection-item">
+        {{ form_widget(form) }}
+        <button type="button" {{ stimulus_action('tkuska--dynamic-form--form-collection', 'removeCollectionElement') }}>{% trans %}agreement.button.remove-subcontractor{% endtrans %}</button>
+    </div>
 {%- endblock form_field_widget %}
