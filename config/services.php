@@ -31,7 +31,8 @@ return static function (ContainerConfigurator $container) {
     ;
 
     $services = $container->services();
-    $services->set(Builder::class);
+    $services->set(Builder::class)
+        ->args([service('form.factory')]);
 
     $services->set('dynamic-form.type.field-type', FormFieldType::class)
         ->args([service(Builder::class)])

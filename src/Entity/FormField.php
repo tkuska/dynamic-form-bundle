@@ -3,6 +3,7 @@
 namespace Tkuska\DynamicFormBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity]
 class FormField
@@ -13,9 +14,11 @@ class FormField
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
+    #[Assert\NotBlank]
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
     private ?string $type = null;
 
     #[ORM\ManyToOne(inversedBy: 'fields')]

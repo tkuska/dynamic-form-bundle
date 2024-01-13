@@ -21,7 +21,8 @@ class  DynamicFormType extends AbstractType
             ->add('fields', CollectionType::class, [
                 'allow_add' => true,
                 'allow_delete' => true,
-                'entry_type' => FormFieldType::class
+                'entry_type' => FormFieldType::class,
+                'error_bubbling' => false
             ])
         ;
     }

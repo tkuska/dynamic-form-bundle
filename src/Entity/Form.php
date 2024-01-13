@@ -5,6 +5,8 @@ namespace Tkuska\DynamicFormBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Tkuska\DynamicFormBundle\Validator as DynamicFormValidators;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity]
 class Form
@@ -15,9 +17,12 @@ class Form
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
+    #[Assert\NotBlank]
     private ?string $name = null;
 
-    #[ORM\OneToMany(mappedBy: 'form', targetEntity: FormField::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'form', targetEntity: FormField::class, orphanRemoval: true, cascade: ['persist', 'remove'])]
+    #[DynamicFormValidators\DuplicatedFieldName()]
+    #[Assert\Valid]
     private Collection $fields;
 
     public function __construct()
