@@ -27,11 +27,10 @@ class FormFieldType extends AbstractType
             ])
             ->add('type', ChoiceType::class, [
                 'required' => true,
-                'choices' => $this->builder->getFieldTypes()
+                'choices' => $this->builder->getFieldTypes(),
             ])
             ->add('label', TextType::class, [
                 'required' => false,
-
             ])
             ->add('help', TextType::class, [
                 'required' => false,
